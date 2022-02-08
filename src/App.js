@@ -1,9 +1,7 @@
 import './App.css';
 import initializeAuthentication from './Firebase/firebase.init';
-import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail, updateProfile } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail, updateProfile } from "firebase/auth";
 import { useState } from 'react';
-
-const googleProvider = new GoogleAuthProvider();
 
 initializeAuthentication();
 
@@ -15,14 +13,6 @@ function App() {
   const [logIn, setLogIn] = useState(false);
   
   const auth = getAuth();
-
-  const handleGoogleSignIn = () => {
-    signInWithPopup(auth, googleProvider)
-    .then(result => {
-      const user = result.user;
-      console.log(user);
-    })
-  }
 
   const handleEmailChange = e => {
     setEmail(e.target.value);
